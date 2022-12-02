@@ -19,3 +19,19 @@ circle {
   stroke-dasharray: 33%, 4%;
   stroke-dashoffset: -27;
 }
+
+circle.stepOne {
+  transform: rotate(-100 80 80);
+}
+circle.stepTwo {
+  transform: rotate(-45 80 80);
+}
+circle.stepThree {
+  transform: rotate(0 80 80);
+}
+circle.stepFour {
+  transform: rotate(45 80 80);
+}
+circle.stepFive {
+  transform: rotate(100 80 80);
+}

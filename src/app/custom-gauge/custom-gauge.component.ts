@@ -14,7 +14,7 @@ export class CustomGaugeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (this.value === 0.1) this.needleValue = '-110';
+    if (this.value === 0.1) this.needleValue = '-100';
     if (this.value === 0.2) this.needleValue = '-90';
     if (this.value === 0.3) this.needleValue = '-60';
     if (this.value === 0.4) this.needleValue = '-30';
@@ -22,13 +22,7 @@ export class CustomGaugeComponent implements OnInit {
     if (this.value === 0.6) this.needleValue = '30';
     if (this.value === 0.7) this.needleValue = '60';
     if (this.value === 0.8) this.needleValue = '90';
-    if (this.value >= 0.9) this.needleValue = '110';
-  }
-
-  transformNeedle() {
-    const r = -110;
-    const pos = 80;
-    this.needlePosition = `${r} ${pos} ${pos}`;
+    if (this.value >= 0.9) this.needleValue = '100';
   }
 
   /// Take an input
@@ -38,7 +32,7 @@ export class CustomGaugeComponent implements OnInit {
   //  - calculate it into 1<->5
 
   // To rotate gauge needle
-  // - calculate into range -110 <-> 110
+  // - calculate into range -100 <-> 100
 
   // change color of gauge circle
   // - find 1/3
