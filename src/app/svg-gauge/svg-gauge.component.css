@@ -1,0 +1,19 @@
+svg {
+  fill: transparent;
+  stroke-width: 5px;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: scale(2);
+  transform-origin: top center;
+}
+circle {
+  stroke: #f8a100;
+  stroke-dasharray: 33%, 4%; /* This is what makes the dashed lines in the semi circle */
+  stroke-dashoffset: -27; /* This adjusts the offset and the starting point of the first dash */
+}
+line {
+  transform: rotate(
+    -110 80 80
+  ); /* We want to control the line (needle) by rotating frm -100 to 100 */
+}

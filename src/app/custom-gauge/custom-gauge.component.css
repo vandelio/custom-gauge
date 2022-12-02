@@ -5,33 +5,3 @@
   min-height: 260px;
   position: relative;
 }
-svg {
-  fill: transparent;
-  stroke-width: 5px;
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: scale(2);
-  transform-origin: top center;
-}
-circle {
-  stroke: #f8a100;
-  stroke-dasharray: 33%, 4%;
-  stroke-dashoffset: -27;
-}
-
-circle.stepOne {
-  transform: rotate(-100 80 80);
-}
-circle.stepTwo {
-  transform: rotate(-45 80 80);
-}
-circle.stepThree {
-  transform: rotate(0 80 80);
-}
-circle.stepFour {
-  transform: rotate(45 80 80);
-}
-circle.stepFive {
-  transform: rotate(100 80 80);
-}
