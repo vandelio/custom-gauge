@@ -6,30 +6,33 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./svg-gauge.component.css'],
 })
 export class SvgGaugeComponent implements OnInit {
-  @Input() value: number;
+  @Input() value: number = 0;
   colorArray = ['#3BCE58', '#E78002', '#DB0300'];
-  needleValue: string = '-110';
-  needlePosition: string;
+  needleValue: number = -110;
+  needlePosition: string = 'rotate(-110 80 80)';
   transformOrigin: number = 80;
 
   constructor() {}
 
   ngOnInit() {
-    if (this.value === 0.1) this.needleValue = '-100';
-    if (this.value === 0.2) this.needleValue = '-90';
-    if (this.value === 0.3) this.needleValue = '-60';
-    if (this.value === 0.4) this.needleValue = '-30';
-    if (this.value === 0.5) this.needleValue = '0';
-    if (this.value === 0.6) this.needleValue = '30';
-    if (this.value === 0.7) this.needleValue = '60';
-    if (this.value === 0.8) this.needleValue = '90';
-    if (this.value >= 0.9) this.needleValue = '100';
-    this.transformNeedle();
+    let interv = setInterval(() => {
+      this.needleValue += 10;
+      const pos = this.transformOrigin;
+      this.needlePosition = `rotate(${this.needleValue} ${pos} ${pos})`;
+      if (this.needleValue === this.needleTarget(this.value)) {
+      }
+    }, 10);
   }
 
-  transformNeedle() {
-    const r = this.needleValue;
-    const pos = this.transformOrigin;
-    this.needlePosition = `rotate(${r} ${pos} ${pos})`;
+  needleTarget(value) {
+    if (value === 0.1) return -110;
+    if (value === 0.2) return -90;
+    if (value === 0.3) return -60;
+    if (value === 0.4) return -30;
+    if (value === 0.5) return 0;
+    if (value === 0.6) return 30;
+    if (value === 0.7) return 60;
+    if (value === 0.8) return 90;
+    if (value === 0.9) return 110;
   }
 }
