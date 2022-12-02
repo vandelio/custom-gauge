@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SvgGaugeComponent implements OnInit {
   @Input() value: number = 0;
   colorArray = ['#3BCE58', '#E78002', '#DB0300'];
-  needleValue: number = -110;
+  needleValue: number = -120;
   needlePosition: string = 'rotate(-110 80 80)';
   transformOrigin: number = 80;
 
@@ -16,14 +16,14 @@ export class SvgGaugeComponent implements OnInit {
 
   ngOnInit() {
     let interv = setInterval(() => {
-      this.needleValue += 10;
+      this.needleValue += 2;
       const pos = this.transformOrigin;
       this.needlePosition = `rotate(${this.needleValue} ${pos} ${pos})`;
       if (this.needleValue === this.needleTarget(this.value)) {
+        clearInterval(interv);
       }
     }, 10);
   }
-
   needleTarget(value) {
     if (value === 0.1) return -110;
     if (value === 0.2) return -90;
