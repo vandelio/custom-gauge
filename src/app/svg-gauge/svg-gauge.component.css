@@ -1,3 +1,11 @@
+.custom-gauge-container {
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  min-height: 260px;
+  position: relative;
+}
+
 svg {
   fill: transparent;
   stroke-width: 5px;

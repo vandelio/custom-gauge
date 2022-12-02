@@ -1,4 +1,5 @@
-<svg>
+<div class="custom-gauge-container">
+  <svg>
     <circle
       id="svgCircle"
       cx="80"
@@ -24,3 +25,4 @@
       </clipPath>
     </defs>
   </svg>
+</div>
