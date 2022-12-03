@@ -1,6 +1,8 @@
 <div class="custom-gauge-container">
+  <h2>{{this.title }} <span [style.color]="setting.color">{{this.setting.titleSuffix}}</span></h2>
   <svg>
     <circle
+    [attr.stroke]="setting.color"
       id="svgCircle"
       cx="80"
       cy="80"
@@ -11,18 +13,22 @@
     <line
       [attr.transform]="needlePosition"
       x1="80"
-      y1="18"
+      y1="16"
       x2="80"
-      y2="2"
+      y2="4"
       stroke="black"
-      stroke-width="5"
+      stroke-width="4"
       stroke-linecap="round"
       id="gaugeneedle"
     />
     <defs>
       <clipPath id="cut-off-bottom">
-        <rect x="0" y="0" width="160" height="102" />
+        <rect x="0" y="0" width="160" height="162" />
       </clipPath>
     </defs>
   </svg>
+
+  <h3><span class="grade" [style.color]="setting.color">{{setting.displayValue}}</span>/<span class="ofTotal">{{displayValueOfTotal}}</span></h3>
+
+
 </div>

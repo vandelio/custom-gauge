@@ -1,24 +1,43 @@
 .custom-gauge-container {
   box-sizing: border-box;
   overflow: hidden;
-  width: 100%;
+  width: 350px;
   min-height: 260px;
   position: relative;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h2 span {
+  margin-left: 0.9ch;
+}
+h3 {
+  font-weight: 100;
+  font-size: 30px;
+  transform: translateY(-90px);
+}
+h3 .grade {
+  font-size: 50px;
 }
 
 svg {
+  border: 1px solid blue;
+  width: 160px;
   fill: transparent;
   stroke-width: 5px;
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: scale(2);
-  transform-origin: top center;
+  position: relative;
+  transform: scale(1.6);
+  transform-origin: center top;
 }
 circle {
-  stroke: #f8a100;
-  stroke-dasharray: 33%, 4%; /* This is what makes the dashed lines in the semi circle */
-  stroke-dashoffset: -27; /* This adjusts the offset and the starting point of the first dash */
+  stroke-dasharray: 115, 8, 108, 8, 74, 8, 151, 8;
+  stroke-dashoffset: 67;
 }
 line {
   transform: rotate(
