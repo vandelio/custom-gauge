@@ -12,36 +12,31 @@ export class SvgGaugeComponent implements OnInit {
       color: '#3BCE58',
       needleRotatingValue: -120,
       displayValue: 1,
-      titleSuffix: 'Good',
-      mask: 'part1',
+      state: 'Good',
     },
     {
       color: '#E78002',
       needleRotatingValue: -60,
       displayValue: 2,
-      titleSuffix: 'Medium',
-      mask: 'part2',
+      state: 'Medium',
     },
     {
       color: '#E78002',
       needleRotatingValue: 0,
       displayValue: 3,
-      titleSuffix: 'Medium',
-      mask: 'part2',
+      state: 'Medium',
     },
     {
       color: '#E78002',
       needleRotatingValue: 60,
       displayValue: 4,
-      titleSuffix: 'Medium',
-      mask: 'part2',
+      state: 'Medium',
     },
     {
       color: '#DB0300',
       needleRotatingValue: 120,
       displayValue: 5,
-      titleSuffix: 'Poor',
-      mask: 'part3',
+      state: 'Poor',
     },
   ];
 
@@ -55,15 +50,10 @@ export class SvgGaugeComponent implements OnInit {
   dateFormatted: string = this.date[0];
   timeFormatted: string = this.date[1];
 
-  showPart1: boolean = false;
-  showPart2: boolean = false;
-  showPart3: boolean = false;
-
   constructor() {}
 
   ngOnInit() {
     this.setting = this.getGaugeSettings();
-    this.setMaskToShow(this.setting.displayValue);
     // Move needle until final position
     let movingGaugeNeedle = setInterval(() => {
       this.needleRotatingValue += 2;
@@ -71,11 +61,6 @@ export class SvgGaugeComponent implements OnInit {
       if (this.needleRotatingValue === this.setting.needleRotatingValue)
         clearInterval(movingGaugeNeedle);
     }, 10);
-  }
-  setMaskToShow(value: number) {
-    if (value <= 2 && value < 3) this.showPart1 = true;
-    if (value >= 3 && value <= 4) this.showPart2 = true;
-    if (value > 4 && value === 5) this.showPart3 = true;
   }
   setNeedlePosition() {
     const pos = this.transformOrigin;
