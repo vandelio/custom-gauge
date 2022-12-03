@@ -34,7 +34,7 @@
     />
     <defs>
       <clipPath id="cut-off-bottom">
-        <rect x="0" y="0" width="160" height="127" />
+        <rect x="0" y="0" width="160" height="126" />
       </clipPath>
       <clipPath id="show-colored-part-of-circle">
        <rect *ngIf="setting.state.toLowerCase() === 'good'" id="part1" x="0" y="40" width="60" height="95" transform="rotate(15 0 0)" />

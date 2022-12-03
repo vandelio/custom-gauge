@@ -16,7 +16,7 @@ export class SvgGaugeComponent implements OnInit {
     },
     {
       color: '#E78002',
-      needleRotatingValue: -60,
+      needleRotatingValue: -58,
       displayValue: 2,
       state: 'Medium',
     },
@@ -28,7 +28,7 @@ export class SvgGaugeComponent implements OnInit {
     },
     {
       color: '#E78002',
-      needleRotatingValue: 60,
+      needleRotatingValue: 58,
       displayValue: 4,
       state: 'Medium',
     },
@@ -70,10 +70,10 @@ export class SvgGaugeComponent implements OnInit {
     return this.gaugeSettings[this.getIndexByInputValue()];
   }
   getIndexByInputValue() {
-    if (this.value <= 0.2) return 0;
-    if (this.value > 0.2 && this.value <= 0.4) return 1;
-    if (this.value > 0.4 && this.value < 0.6) return 2;
-    if (this.value >= 0.6 && this.value < 0.8) return 3;
-    if (this.value >= 0.8) return 4;
+    if (this.value < 0.2) return 0;
+    if (this.value >= 0.2 && this.value < 0.4) return 1;
+    if (this.value >= 0.4 && this.value <= 0.6) return 2;
+    if (this.value > 0.6 && this.value <= 0.8) return 3;
+    if (this.value > 0.8) return 4;
   }
 }
