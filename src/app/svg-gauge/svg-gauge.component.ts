@@ -13,30 +13,35 @@ export class SvgGaugeComponent implements OnInit {
       needleRotatingValue: -120,
       displayValue: 1,
       titleSuffix: 'Good',
+      mask: 'part1',
     },
     {
       color: '#E78002',
       needleRotatingValue: -60,
       displayValue: 2,
       titleSuffix: 'Medium',
+      mask: 'part2',
     },
     {
       color: '#E78002',
       needleRotatingValue: 0,
       displayValue: 3,
       titleSuffix: 'Medium',
+      mask: 'part2',
     },
     {
       color: '#E78002',
       needleRotatingValue: 60,
       displayValue: 4,
       titleSuffix: 'Medium',
+      mask: 'part2',
     },
     {
       color: '#DB0300',
       needleRotatingValue: 120,
       displayValue: 5,
       titleSuffix: 'Poor',
+      mask: 'part3',
     },
   ];
 
@@ -50,15 +55,15 @@ export class SvgGaugeComponent implements OnInit {
   dateFormatted: string = this.date[0];
   timeFormatted: string = this.date[1];
 
-  showGreen: boolean = false;
-  showYellow: boolean = false;
-  showRed: boolean = false;
+  showPart1: boolean = false;
+  showPart2: boolean = false;
+  showPart3: boolean = false;
 
   constructor() {}
 
   ngOnInit() {
     this.setting = this.getGaugeSettings();
-
+    this.setMaskToShow(this.setting.displayValue);
     // Move needle until final position
     let movingGaugeNeedle = setInterval(() => {
       this.needleRotatingValue += 2;
@@ -67,12 +72,13 @@ export class SvgGaugeComponent implements OnInit {
         clearInterval(movingGaugeNeedle);
     }, 10);
   }
+  setMaskToShow(value: number) {
+    if (value <= 2 && value < 3) this.showPart1 = true;
+    if (value >= 3 && value <= 4) this.showPart2 = true;
+    if (value > 4 && value === 5) this.showPart3 = true;
+  }
   setNeedlePosition() {
     const pos = this.transformOrigin;
-    if (this.needleRotatingValue < -60) this.showGreen = true;
-    if (this.needleRotatingValue >= -59 && this.needleRotatingValue <= 59)
-      this.showYellow = true;
-    if (this.needleRotatingValue >= 60) this.showRed = true;
     this.needlePosition = `rotate(${this.needleRotatingValue} ${pos} ${pos})`;
   }
   getGaugeSettings() {

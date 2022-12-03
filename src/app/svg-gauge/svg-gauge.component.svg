@@ -1,6 +1,7 @@
 <div class="custom-gauge-container">
   <h2>{{this.title }} <span [style.color]="setting.color">{{this.setting.titleSuffix}}</span></h2>
-  <svg>
+  <svg 
+      clip-path="url(#cut-off-bottom)">
     <circle
       stroke-color="#ccc"
       id="svgCircleBack"
@@ -9,7 +10,6 @@
       r="70"
       stroke-width="8"
       stroke-linecap="round"
-      clip-path="url(#cut-off-bottom)"
     />
     <circle
     [attr.stroke]="setting.color"
@@ -34,12 +34,12 @@
     />
     <defs>
       <clipPath id="cut-off-bottom">
-        <rect  x="0" y="0" width="160" height="125" transform="rotate(45deg)" />
+        <rect x="0" y="0" width="160" height="127" />
       </clipPath>
       <clipPath id="show-colored-part-of-circle">
-        <rect *ngIf="showGreen" id="part1" x="0" y="40" width="60" height="95" transform="rotate(15 0 0)" />
-        <rect *ngIf="showYellow" id="part2" x="-16" y="-105" width="150" height="185" transform="rotate(45 0 0)" />
-        <rect *ngIf="showRed" id="part3" x="0" y="0" width="160" height="125" />
+       <rect *ngIf="setting.mask === 'part1'" id="part1" x="0" y="40" width="60" height="95" transform="rotate(15 0 0)" />
+        <rect *ngIf="setting.mask === 'part2'" id="part2" x="-16" y="-105" width="150" height="185" transform="rotate(45 0 0)" /> 
+        <rect *ngIf="setting.mask === 'part3'" id="part3" x="0" y="0" width="160" height="125" />
       </clipPath>
     </defs>
   </svg>
