@@ -2,13 +2,24 @@
   <h2>{{this.title }} <span [style.color]="setting.color">{{this.setting.titleSuffix}}</span></h2>
   <svg>
     <circle
+      stroke-color="#ccc"
+      id="svgCircleBack"
+      cx="80"
+      cy="80"
+      r="70"
+      stroke-width="8"
+      stroke-linecap="round"
+      clip-path="url(#cut-off-bottom)"
+    />
+    <circle
     [attr.stroke]="setting.color"
       id="svgCircle"
       cx="80"
       cy="80"
       r="70"
+      stroke-width="8"
       stroke-linecap="round"
-      clip-path="url(#cut-off-bottom)"
+      clip-path="url(#show-colored-part-of-circle)"
     />
     <line
       [attr.transform]="needlePosition"
@@ -23,12 +34,26 @@
     />
     <defs>
       <clipPath id="cut-off-bottom">
-        <rect x="0" y="0" width="160" height="162" />
+        <rect  x="0" y="0" width="160" height="125" transform="rotate(45deg)" />
+      </clipPath>
+      <clipPath id="show-colored-part-of-circle">
+        <rect *ngIf="showGreen" id="part1" x="0" y="40" width="60" height="95" transform="rotate(15 0 0)" />
+        <rect *ngIf="showYellow" id="part2" x="-16" y="-105" width="150" height="185" transform="rotate(45 0 0)" />
+        <rect *ngIf="showRed" id="part3" x="0" y="0" width="160" height="125" />
       </clipPath>
     </defs>
   </svg>
-
-  <h3><span class="grade" [style.color]="setting.color">{{setting.displayValue}}</span>/<span class="ofTotal">{{displayValueOfTotal}}</span></h3>
-
+  <div class="gauge-content ">
+    <h3>
+      <span class="grade" [style.color]="setting.color">{{setting.displayValue}}</span>/<span class="ofTotal">{{displayValueOfTotal}}</span>
+    </h3>
+    <div class="date">
+      <p>
+        {{dateFormatted}}
+        <br>
+        {{timeFormatted}}
+      </p>
+    </div>
+  </div>
 
 </div>

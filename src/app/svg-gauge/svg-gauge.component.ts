@@ -10,43 +10,49 @@ export class SvgGaugeComponent implements OnInit {
   gaugeSettings = [
     {
       color: '#3BCE58',
-      needleRotatingValue: -110,
-      displayValue: '1',
+      needleRotatingValue: -120,
+      displayValue: 1,
       titleSuffix: 'Good',
     },
     {
       color: '#E78002',
       needleRotatingValue: -60,
-      displayValue: '2',
+      displayValue: 2,
       titleSuffix: 'Medium',
     },
     {
       color: '#E78002',
       needleRotatingValue: 0,
-      displayValue: '3',
+      displayValue: 3,
       titleSuffix: 'Medium',
     },
     {
       color: '#E78002',
       needleRotatingValue: 60,
-      displayValue: '4',
+      displayValue: 4,
       titleSuffix: 'Medium',
     },
     {
       color: '#DB0300',
-      needleRotatingValue: 110,
-      displayValue: '5',
+      needleRotatingValue: 120,
+      displayValue: 5,
       titleSuffix: 'Poor',
     },
   ];
 
-  displayValueOfTotal = '5';
-  colorArray = ['#3BCE58', '#E78002', '#DB0300'];
-  needleRotatingValue: number = -110; // starting point
-  needlePosition: string = 'rotate(' + this.needleRotatingValue + ' 80 80)'; // starting point
+  displayValueOfTotal = 5;
+  needleRotatingValue: number = this.gaugeSettings[0].needleRotatingValue - 10; // starting - is below first point
+  needlePosition: string;
   transformOrigin: number = 80;
-  title: string = "your asset's health is ";
+  title: string = "Your asset's health is ";
   setting;
+  date: string[] = new Date().toLocaleString().split(',');
+  dateFormatted: string = this.date[0];
+  timeFormatted: string = this.date[1];
+
+  showGreen: boolean = false;
+  showYellow: boolean = false;
+  showRed: boolean = false;
 
   constructor() {}
 
@@ -54,19 +60,22 @@ export class SvgGaugeComponent implements OnInit {
     this.setting = this.getGaugeSettings();
 
     // Move needle until final position
-    /*let movingGaugeNeedle = setInterval(() => {
+    let movingGaugeNeedle = setInterval(() => {
       this.needleRotatingValue += 2;
       this.setNeedlePosition();
       if (this.needleRotatingValue === this.setting.needleRotatingValue)
         clearInterval(movingGaugeNeedle);
-    }, 10);*/
+    }, 10);
   }
   setNeedlePosition() {
     const pos = this.transformOrigin;
+    if (this.needleRotatingValue < -60) this.showGreen = true;
+    if (this.needleRotatingValue >= -59 && this.needleRotatingValue <= 59)
+      this.showYellow = true;
+    if (this.needleRotatingValue >= 60) this.showRed = true;
     this.needlePosition = `rotate(${this.needleRotatingValue} ${pos} ${pos})`;
   }
   getGaugeSettings() {
-    console.log('index', this.getIndexByInputValue());
     return this.gaugeSettings[this.getIndexByInputValue()];
   }
   getIndexByInputValue() {
